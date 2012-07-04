@@ -1,0 +1,8 @@
+dwm*
+patches/*
+
+.*
+!.gitmodules
+!.gitignore
+!.gitslave
+
