@@ -1,5 +1,6 @@
 source = http://dl.suckless.org/dwm/dwm-6.0.tar.gz
 source_filename = $(call notdir,${source})
+
 patches_dirname = patches
 build_dirname = $(call basename,$(call basename,${source_filename}))
 
