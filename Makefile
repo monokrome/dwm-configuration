@@ -1,8 +1,8 @@
 source = http://dl.suckless.org/dwm/dwm-6.0.tar.gz
 source_filename = $(call notdir,${source})
 
-patches_dirname = patches
-build_dirname = $(call basename,$(call basename,${source_filename}))
+patches_dirname = $(CURDIR)/patches
+build_dirname = $(CURDIR)/$(call basename,$(call basename,${source_filename}))
 
 patches = http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff \
           http://dwm.suckless.org/patches/dwm-6.0-bstack.diff \
