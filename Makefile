@@ -8,11 +8,11 @@ patches = http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff \
          	http://dwm.suckless.org/patches/autoresize.diff \
          	http://dwm.suckless.org/patches/dwm-6.0-single_window_no_border.diff \
         	http://dwm.suckless.org/patches/dwm-6.0-pertag.diff \
-					http://dwm.suckless.org/patches/dwm-6.0-statusallmons.diff \
-					http://dwm.suckless.org/patches/dwm-6.0-systray.diff \
-					http://dwm.suckless.org/patches/dwm-r1522-viewontag.diff \
-					http://dwm.suckless.org/patches/dwm-6.0-xft.diff \
-					http://dwm.suckless.org/patches/dwm-6.0-zoomswap.diff
+          http://dwm.suckless.org/patches/dwm-6.0-statusallmons.diff \
+          http://dwm.suckless.org/patches/dwm-6.0-systray.diff \
+          http://dwm.suckless.org/patches/dwm-r1522-viewontag.diff \
+          http://dwm.suckless.org/patches/dwm-6.0-xft.diff \
+          http://dwm.suckless.org/patches/dwm-6.0-zoomswap.diff
 
 # TODO: Patches to modify for DWM 6.0
 #	combo
