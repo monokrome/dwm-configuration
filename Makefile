@@ -22,10 +22,19 @@ patches = http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff \
 #	keymodes
 #	nametag
 
-patch_filename = $(patches_dirname)/$1
-patch_url_to_filename = $(call patch_filename,$(call notdir,$1))
+all: patch
 
-all: $(build_dirname)
+patch: $(build_dirname) $(patches_dirname)
+	for patch in $(patches); do \
+		cd ${patches_dirname} && wget $${patch}; \
+	done
+
+	for patch in $(wildcard ${patches_dirname}/*); do \
+		cd $(build_dirname) && patch -p1 < $$patch; \
+	done
+
+$(patches_dirname):
+	mkdir -p $@
 
 $(build_dirname): $(source_filename)
 	tar -xvf $(source_filename)
@@ -38,5 +47,4 @@ clean:
 	rm -rf patches
 	rm -rf dwm
 
-.PHONY: all clean
-
+.PHONY: all clean patch
