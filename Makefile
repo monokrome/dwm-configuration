@@ -19,6 +19,10 @@ patches = http://dwm.suckless.org/patches/dwm-6.0-systray.diff \
 
 patch_filenames = $(foreach patch,$(patches),$(call url_to_patch_filename,$(patch)))
 
+postbuild_patches = https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-urxvt.diff
+
+postbuild_patch_filenames = $(foreach patch,$(postbuild_patches),$(call url_to_patch_filename,$(patch)))
+
 # TODO: Patches to modify for DWM 6.0
 #	combo
 #	fibonacci
@@ -36,14 +40,21 @@ patch_filenames = $(foreach patch,$(patches),$(call url_to_patch_filename,$(patc
 # TODO: Paths are completely borked in this one.
 #          http://dwm.suckless.org/patches/dwm-6.0-xft.diff
 
-all: $(dwm_filename)
+all: $(postbuild_patch_filenames)
+	# Rebuilds dwm again after applying patches. First build was
+	# required in order to create config.h for patching the configuration.
+	make -C $(build_dirname)
 
-$(dwm_filename): $(patch_filenames)
-	cd $(build_dirname) && make
+$(postbuild_patch_filenames): $(dwm_filename)
+	cd $(postbuild_patches_dirname) && wget -q $(filter %/$(@F),$(postbuild_patches)) -O $@
+	cd $(build_dirname) && patch -p1 < $@
 
-$(patch_filenames): $(patches_dirname) $(build_dirname)
+$(dwm_filename): $(build_dirname) $(patch_filenames)
+	make -C $(build_dirname)
+
+$(patch_filenames): $(patches_dirname)
 	cd $(patches_dirname) && wget -q $(filter %/$(@F),$(patches)) -O $@
-	cd $(build_dirname) && patch -p1 < $@;
+	cd $(build_dirname) && patch -p1 < $@
 
 $(patches_dirname):
 	mkdir -p $@
