@@ -23,6 +23,7 @@ postbuild_patches = https://raw.github.com/monokrome/dwm-custom-patches/master/d
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-urxvt.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-supermod.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-namedtags.diff \
+                    https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-custom-hidebar.diff \
                     http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff \
                     http://dwm.suckless.org/patches/dwm-6.0-bstack.diff
 
