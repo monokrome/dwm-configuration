@@ -19,7 +19,10 @@ patches = http://dwm.suckless.org/patches/dwm-6.0-systray.diff \
 
 patch_filenames = $(foreach patch,$(patches),$(call url_to_patch_filename,$(patch)))
 
-postbuild_patches = https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-urxvt.diff
+postbuild_patches = https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-justtile.diff \
+					https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-urxvt.diff \
+                    https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-supermod.diff \
+                    https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-namedtags.diff
 
 postbuild_patch_filenames = $(foreach patch,$(postbuild_patches),$(call url_to_patch_filename,$(patch)))
 
@@ -40,9 +43,9 @@ postbuild_patch_filenames = $(foreach patch,$(postbuild_patches),$(call url_to_p
 # TODO: Paths are completely borked in this one.
 #          http://dwm.suckless.org/patches/dwm-6.0-xft.diff
 
+# This also rebuilds dwm again after applying patches. First build was
+# required in order to create config.h for patching the configuration.
 all: $(postbuild_patch_filenames)
-	# Rebuilds dwm again after applying patches. First build was
-	# required in order to create config.h for patching the configuration.
 	make -C $(build_dirname)
 
 $(postbuild_patch_filenames): $(dwm_filename)
