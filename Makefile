@@ -1,19 +1,23 @@
-source = http://dl.suckless.org/dwm/dwm-6.0.tar.gz
-source_filename = $(call notdir,${source})
+url_to_words = $(lastword $(subst /, ,$1))
 
+source_url = http://dl.suckless.org/dwm/dwm-6.0.tar.gz
+source_filename = $(call notdir,$(call url_to_words,$(source_url)))
+
+patch_filename = $(patches_dirname)/$1
 patches_dirname = $(CURDIR)/patches
+
 build_dirname = $(CURDIR)/$(call basename,$(call basename,${source_filename}))
 
-patches = http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff \
-          http://dwm.suckless.org/patches/dwm-6.0-bstack.diff \
-          http://dwm.suckless.org/patches/autoresize.diff \
+dwm_filename = $(build_dirname)/dwm
+
+url_to_patch_filename = $(call patch_filename,$(call url_to_words,$1))
+
+patches = http://dwm.suckless.org/patches/dwm-6.0-systray.diff \
           http://dwm.suckless.org/patches/dwm-6.0-single_window_no_border.diff \
           http://dwm.suckless.org/patches/dwm-6.0-pertag.diff \
-          http://dwm.suckless.org/patches/dwm-6.0-statusallmons.diff \
-          http://dwm.suckless.org/patches/dwm-6.0-systray.diff \
-          http://dwm.suckless.org/patches/dwm-r1522-viewontag.diff \
-          http://dwm.suckless.org/patches/dwm-6.0-xft.diff \
-          http://dwm.suckless.org/patches/dwm-6.0-zoomswap.diff
+          http://dwm.suckless.org/patches/dwm-r1522-viewontag.diff
+
+patch_filenames = $(foreach patch,$(patches),$(call url_to_patch_filename,$(patch)))
 
 # TODO: Patches to modify for DWM 6.0
 #	combo
@@ -22,16 +26,24 @@ patches = http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff \
 #	keymodes
 #	nametag
 
-all: patch
+# TODO: The following collide with other ones (most notably systray)
+#          http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff
+#          http://dwm.suckless.org/patches/autoresize.diff
+#          http://dwm.suckless.org/patches/dwm-6.0-statusallmons.diff
+#          http://dwm.suckless.org/patches/dwm-6.0-bstack.diff
+#          http://dwm.suckless.org/patches/dwm-6.0-zoomswap.diff
 
-patch: $(build_dirname) $(patches_dirname)
-	for patch in $(patches); do \
-		cd ${patches_dirname} && wget $${patch}; \
-	done
+# TODO: Paths are completely borked in this one.
+#          http://dwm.suckless.org/patches/dwm-6.0-xft.diff
 
-	for patch in $(wildcard ${patches_dirname}/*); do \
-		cd $(build_dirname) && patch -p1 < $$patch; \
-	done
+all: $(dwm_filename)
+
+$(dwm_filename): $(patch_filenames)
+	cd $(build_dirname) && make
+
+$(patch_filenames): $(patches_dirname) $(build_dirname)
+	cd $(patches_dirname) && wget -q $(filter %/$(@F),$(patches)) -O $@
+	cd $(build_dirname) && patch -p1 < $@;
 
 $(patches_dirname):
 	mkdir -p $@
@@ -40,11 +52,11 @@ $(build_dirname): $(source_filename)
 	tar -xvf $(source_filename)
 
 $(source_filename):
-	wget $(source) -O $(source_filename)
+	wget $(source_url) -O $@
 
 clean:
-	rm $(source_filename)
-	rm -rf patches
-	rm -rf dwm
+	@rm $(source_filename)
+	@rm -rf $(patches_dirname)
+	@rm -rf $(build_dirname)
 
 .PHONY: all clean patch
