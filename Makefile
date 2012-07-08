@@ -22,7 +22,9 @@ patch_filenames = $(foreach patch,$(patches),$(call url_to_patch_filename,$(patc
 postbuild_patches = https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-justtile.diff \
 					https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-urxvt.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-supermod.diff \
-                    https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-namedtags.diff
+                    https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-namedtags.diff \
+          			http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff \
+		            http://dwm.suckless.org/patches/dwm-6.0-bstack.diff
 
 postbuild_patch_filenames = $(foreach patch,$(postbuild_patches),$(call url_to_patch_filename,$(patch)))
 
@@ -34,10 +36,8 @@ postbuild_patch_filenames = $(foreach patch,$(postbuild_patches),$(call url_to_p
 #	nametag
 
 # TODO: The following collide with other ones (most notably systray)
-#          http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff
 #          http://dwm.suckless.org/patches/autoresize.diff
 #          http://dwm.suckless.org/patches/dwm-6.0-statusallmons.diff
-#          http://dwm.suckless.org/patches/dwm-6.0-bstack.diff
 #          http://dwm.suckless.org/patches/dwm-6.0-zoomswap.diff
 
 # TODO: Paths are completely borked in this one.
