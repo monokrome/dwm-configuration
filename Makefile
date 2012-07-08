@@ -21,6 +21,7 @@ patch_filenames = $(foreach patch,$(patches),$(call url_to_patch_filename,$(patc
 
 postbuild_patches = https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-justtile.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-urxvt.diff \
+                    https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-custom-nostatus.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-supermod.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-namedtags.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-custom-hidebar.diff \
