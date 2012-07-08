@@ -20,11 +20,11 @@ patches = http://dwm.suckless.org/patches/dwm-6.0-systray.diff \
 patch_filenames = $(foreach patch,$(patches),$(call url_to_patch_filename,$(patch)))
 
 postbuild_patches = https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-justtile.diff \
-					https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-urxvt.diff \
+                    https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-urxvt.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-supermod.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-namedtags.diff \
-          			http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff \
-		            http://dwm.suckless.org/patches/dwm-6.0-bstack.diff
+                    http://dwm.suckless.org/patches/dwm-6.0-attachabove.diff \
+										http://dwm.suckless.org/patches/dwm-6.0-bstack.diff
 
 postbuild_patch_filenames = $(foreach patch,$(postbuild_patches),$(call url_to_patch_filename,$(patch)))
 
