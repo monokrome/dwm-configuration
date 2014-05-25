@@ -23,7 +23,6 @@ postbuild_patches = https://raw.github.com/monokrome/dwm-custom-patches/master/d
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-urxvt.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-standardkill.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-custom-nostatus.diff \
-                    https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-supermod.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-namedtags.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-noapps.diff \
                     https://raw.github.com/monokrome/dwm-custom-patches/master/dwm-6.0-custom-hidebar.diff \
